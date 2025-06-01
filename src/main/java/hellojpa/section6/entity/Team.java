@@ -15,8 +15,10 @@ public class Team {
 
     private String name;
 
+    // Member 에서 Team 으로 가는게 다대일
+    // 따라서 반대로 Team 에서 Member 로 가는 것은 일대다
     @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+    private List<Member> members = new ArrayList<>(); // null 참조 방지 위해 ArrayList 로 초기화
 
     public List<Member> getMembers() {
         return members;
@@ -40,5 +42,14 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", members=" + members +
+                '}';
     }
 }
